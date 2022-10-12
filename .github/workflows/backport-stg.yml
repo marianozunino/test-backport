@@ -14,14 +14,14 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Backport from stg to dev
-        id: cmb
-        uses: cristiammercado/cm-backport-pr@v1.0.0
+        id: cmb2
+        uses: cristiammercado/cm-backport-pr@1.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          pr-from-branch: st
+          pr-from-branch: stg
           pr-to-branch: dev
-          pr-title: "A PR title"
-          pr-body: "The PR body."
+          pr-title: "Backport PR from stg to dev"
+          pr-body: ""
           pr-fail-if-exists: false
           pr-update-if-exists: false
           maintainer-can-modify: true
@@ -29,4 +29,4 @@ jobs:
           merge-pr-after-created: true
           merge-commit-title: "Merge commit title"
           merge-commit-body: "Merge commit message."
-          merge-method: squash
+          merge-method: merge
