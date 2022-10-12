@@ -1,0 +1,32 @@
+name: CM Backport PR
+
+on:
+  push:
+    branches:
+      - stg
+
+jobs:
+  backport:
+    name: CM Backport PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Backport from stg to dev
+        id: cmb
+        uses: cristiammercado/cm-backport-pr@v1.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pr-from-branch: st
+          pr-to-branch: dev
+          pr-title: "A PR title"
+          pr-body: "The PR body."
+          pr-fail-if-exists: false
+          pr-update-if-exists: false
+          maintainer-can-modify: true
+          draft: false
+          merge-pr-after-created: true
+          merge-commit-title: "Merge commit title"
+          merge-commit-body: "Merge commit message."
+          merge-method: squash
